@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  color: #222;
+}
+
+.header {
+  background-color: #111;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: relative;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* HAMBURGER — desktop pe hide */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.hero {
+  height: 500px;
+  background-image: url("images/orange.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.hero-text {
+  background-color: rgba(0,0,0,0.4);
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.hero-text h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-text button {
+  background-color: #111;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.featured {
+  padding: 50px 40px;
+  text-align: center;
+}
+
+.featured h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.product-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: white;
+  width: 280px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.product-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin-top: 15px;
+  font-size: 22px;
+}
+
+.product-card p {
+  font-size: 18px;
+  color: #555;
+}
+
+.footer {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #111;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 20px;
+    z-index: 999;
+  }
+
+  .navbar.open {
+    display: flex;
+  }
+
+  .navbar a {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .hero {
+    height: auto;
+    padding: 80px 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .product-card {
+    width: 90%;
+  }
+}
