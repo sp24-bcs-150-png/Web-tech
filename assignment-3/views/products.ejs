@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 shadow-sm">
+            <h5>🔍 Filters</h5>
+            <form action="/products" method="GET">
+                <div class="mb-3">
+                    <label class="form-label">Search Name</label>
+                    <input type="text" name="search" class="form-control" value="<%= filters.search || '' %>" placeholder="e.g. Shirt">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-select">
+                        <option value="">All Categories</option>
+                        <option value="Electronics" <%= filters.category === 'Electronics' ? 'selected' : '' %>>Electronics</option>
+                        <option value="Fashion" <%= filters.category === 'Fashion' ? 'selected' : '' %>>Fashion</option>
+                        <option value="Home" <%= filters.category === 'Home' ? 'selected' : '' %>>Home</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Min Price ($)</label>
+                    <input type="number" name="minPrice" class="form-control" value="<%= filters.minPrice || '' %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Max Price ($)</label>
+                    <input type="number" name="maxPrice" class="form-control" value="<%= filters.maxPrice || '' %>">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                <a href="/products" class="btn btn-secondary w-100 mt-2">Clear All</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <h3 class="mb-3">Product Catalog (<%= totalProducts %> items found)</h3>
+        
+        <div class="row">
+            <% if (products.length === 0) { %>
+                <div class="col-12"><div class="alert alert-warning">No products found matching your criteria.</div></div>
+            <% } %>
+
+            <% products.forEach(product => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <span class="badge bg-secondary mb-2"><%= product.category %></span>
+                            <h5 class="card-title"><%= product.name %></h5>
+                            <p class="card-text text-danger fw-bold">$<%= product.price %></p>
+                            <p class="card-text text-muted small">Rating: ⭐ <%= product.rating %> | Stock: <%= product.stock %></p>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+        <% if (totalPages > 1) { %>
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <%= currentPage == 1 ? 'disabled' : '' %>">
+                        <a class="page-link" href="/products?page=<%= currentPage - 1 %>&search=<%= filters.search %>&category=<%= filters.category %>&minPrice=<%= filters.minPrice %>&maxPrice=<%= filters.maxPrice %>">Previous</a>
+                    </li>
+
+                    <% for(let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= currentPage == i ? 'active' : '' %>">
+                            <a class="page-link" href="/products?page=<%= i %>&search=<%= filters.search %>&category=<%= filters.category %>&minPrice=<%= filters.minPrice %>&maxPrice=<%= filters.maxPrice %>"><%= i %></a>
+                        </li>
+                    <% } %>
+
+                    <li class="page-item <%= currentPage == totalPages ? 'disabled' : '' %>">
+                        <a class="page-link" href="/products?page=<%= currentPage + 1 %>&search=<%= filters.search %>&category=<%= filters.category %>&minPrice=<%= filters.minPrice %>&maxPrice=<%= filters.maxPrice %>">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        <% } %>
+    </div>
+</div>
