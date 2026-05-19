@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4 shadow-sm border-0">
+            <h3 class="mb-3 fw-bold text-primary">Create An Account</h3>
+            <hr>
+            <form action="/register" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-control" required placeholder="John Doe">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" required placeholder="john@example.com">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password (Minimum 6 characters)</label>
+                    <input type="password" name="password" class="form-control" required minlength="6" placeholder="******">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Select Profile Role</label>
+                    <select name="role" class="form-select">
+                        <option value="customer">Standard Customer</option>
+                        <option value="admin">System Administrator</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2">Submit Registration</button>
+            </form>
+            <div class="text-center mt-3">
+                <a href="/login" class="text-muted small">Already have an account? Login here</a>
+            </div>
+        </div>
+    </div>
+</div>
