@@ -1,0 +1,42 @@
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h2 class="fw-bold text-secondary">Real-Time Sales Analytics</h2>
+        <p class="text-muted">Data pulls automatically every 10 seconds via background AJAX polling loops.</p>
+    </div>
+</div>
+
+<div class="row text-center mb-4">
+    <div class="col-md-6 mb-3">
+        <div class="card border-0 shadow-sm bg-primary text-white p-4">
+            <h3>Total Accumulated Revenue</h3>
+            <h1 class="display-4 fw-bold">$<span id="revenue-box"><%= totalRevenue %></span></h1>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card border-0 shadow-sm bg-success text-white p-4">
+            <h3>Total Orders Confirmed</h3>
+            <h1 class="display-4 fw-bold"><span id="orders-box"><%= totalOrders %></span></h1>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        console.log("Real-time telemetry initialization hook active.");
+
+        // Periodic asynchronous trigger loop
+        setInterval(function() {
+            console.log("Polling database cluster for sales delta increments...");
+            
+            $.getJSON('/api/sales-data', function(data) {
+                // Dynamically injecting values directly inside targeted DOM nodes without system flashes
+                $('#revenue-box').text(data.totalRevenue);
+                $('#orders-box').text(data.totalOrders);
+                console.log("DOM nodes updated gracefully with data updates:", data);
+            }).fail(function() {
+                console.error("Critical error mapping stream adjustments from target node endpoints.");
+            });
+
+        }, 10000); // 10000 Milliseconds = 10 Seconds frequency interval rate
+    });
+</script>
